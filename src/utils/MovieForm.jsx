@@ -10,30 +10,17 @@ class MovieForm extends Form {
       title: "",
       numberInStock: "",
       genreId: "",
-      dailyRentalRate: ""
+      dailyRentalRate: "",
     },
     genres: [],
-    errors: {}
+    errors: {},
   };
   schema = {
     _id: Joi.string(),
-    title: Joi.string()
-      .required()
-      .min(5)
-      .label("Title"),
-    genreId: Joi.string()
-      .required()
-      .label("Genre"),
-    numberInStock: Joi.number()
-      .required()
-      .label("Stock")
-      .integer()
-      .min(0),
-    dailyRentalRate: Joi.number()
-      .label("Rate")
-      .required()
-      .min(0)
-      .max(10)
+    title: Joi.string().required().min(5).label("Title"),
+    genreId: Joi.string().required().label("Genre"),
+    numberInStock: Joi.number().required().label("Stock").integer().min(0),
+    dailyRentalRate: Joi.number().label("Rate").required().min(0).max(10),
   };
 
   async componentDidMount() {
@@ -52,13 +39,13 @@ class MovieForm extends Form {
     // console.log(this.props.match.params.id);
   }
 
-  viewToModel = movie => {
+  viewToModel = (movie) => {
     return {
       _id: movie._id,
       title: movie.title,
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailyRentalRate
+      dailyRentalRate: movie.dailyRentalRate,
     };
   };
 
